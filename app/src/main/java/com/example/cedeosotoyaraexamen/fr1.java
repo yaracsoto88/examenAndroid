@@ -10,14 +10,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.content.res.Configuration;
+
+
+
 
 public class fr1 extends Fragment {
     ListView lista;
     public fr1() {
         // Required empty public constructor
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,12 +41,17 @@ public class fr1 extends Fragment {
                 args.putString("selectedMessage", selectedMessage);
                 segundoFragmento.setArguments(args);
 
-                requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame1, segundoFragmento)
-                        .addToBackStack(null)
-                        .commit();
-            }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    requireActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame1, segundoFragmento)
+                            .addToBackStack(null)
+                            .commit();
+                }else{
+                    requireActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frame2, segundoFragmento)
+                            .addToBackStack(null)
+                            .commit();
+                }}
         });
         return view;
-    }
-}
+    }}
