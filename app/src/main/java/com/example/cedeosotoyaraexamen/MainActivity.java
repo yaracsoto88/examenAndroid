@@ -13,27 +13,23 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout frame1;
     private FrameLayout frame2;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-            getSupportFragmentManager().beginTransaction().add(R.id.frame1, new fr1()).commit();
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.frame1, new fr1())
-                        .addToBackStack(null)
-                        .commit();
-            } else {
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.frame1, new fr1())
-                        .addToBackStack(null)
-                        .commit();
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.frame2, new fr2())
-                        .addToBackStack(null)
-                        .commit();
-            }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        }
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame1, new fr1())
+                    .commit();
+        } else {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame1, new fr1())
+                    .replace(R.id.frame2, new fr2())
+                    .commit();}
+
+        // Resto de tu código...
     }
+
+}
 
