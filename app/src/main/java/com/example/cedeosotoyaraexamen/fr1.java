@@ -29,8 +29,18 @@ public class fr1 extends Fragment {
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int selectedIndex = position;
+
+                String[] mensajes = getResources().getStringArray(R.array.arrayMensajes);
+                String selectedMessage = mensajes[selectedIndex];
+
+                fr2 segundoFragmento = new fr2();
+                Bundle args = new Bundle();
+                args.putString("selectedMessage", selectedMessage);
+                segundoFragmento.setArguments(args);
+
                 requireActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame1, new fr2())
+                        .replace(R.id.frame1, segundoFragmento)
                         .addToBackStack(null)
                         .commit();
             }
